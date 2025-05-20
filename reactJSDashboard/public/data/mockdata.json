@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Submit assignment",
+    "deadline": "2025-05-18T23:59:59Z",
+    "priority": "high"
+  },
+  {
+    "id": 2,
+    "title": "Team meeting",
+    "deadline": "2025-05-22T10:00:00Z",
+    "priority": "medium"
+  },
+  {
+    "id": 3,
+    "title": "Buy groceries",
+    "deadline": "2025-05-19T17:00:00Z",
+    "priority": "low"
+  },
+  {
+    "id": 4,
+    "title": "Client call",
+    "deadline": "2025-05-20T14:00:00Z",
+    "priority": "high"
+  }
+]

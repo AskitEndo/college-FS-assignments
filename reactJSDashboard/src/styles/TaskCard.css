@@ -1,0 +1,159 @@
+.task-card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp var(--transition-normal);
+  transform-origin: center bottom;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.task-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.task-card.priority-high::before {
+  background-color: var(--priority-high);
+}
+
+.task-card.priority-medium::before {
+  background-color: var(--priority-medium);
+}
+
+.task-card.priority-low::before {
+  background-color: var(--priority-low);
+}
+
+.task-card.overdue {
+  background-color: var(--overdue-bg);
+}
+
+.task-title {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  padding-right: 1.5rem;
+}
+
+.task-meta {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.task-info-icon {
+  margin-right: 0.75rem;
+  font-size: 1rem;
+  opacity: 0.8;
+  width: 16px;
+  text-align: center;
+}
+
+.task-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-high {
+  background-color: rgba(255, 93, 93, 0.2);
+  color: var(--priority-high);
+}
+
+.tag-medium {
+  background-color: rgba(255, 184, 77, 0.2);
+  color: var(--priority-medium);
+}
+
+.tag-low {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--priority-low);
+}
+
+.task-overdue {
+  display: flex;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(255, 93, 93, 0.15);
+  border-radius: var(--border-radius-sm);
+  color: var(--priority-high);
+  font-weight: 600;
+  font-size: 0.85rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.deadline-counter {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.days-few {
+  color: var(--priority-high);
+}
+
+.days-some {
+  color: var(--priority-medium);
+}
+
+.days-many {
+  color: var(--priority-low);
+}
+
+.days-past {
+  background: var(--priority-high);
+  color: white;
+}
