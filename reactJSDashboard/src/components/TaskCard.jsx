@@ -2,7 +2,7 @@ import React from "react";
 import { isOverdue, priorityColor } from "../utils/sortUtils";
 import "../styles/TaskCard.css";
 
-export default function TaskCard({ task, style }) {
+export default function TaskCard({ task, style, className = "" }) {
   const { title, deadline, priority } = task;
   const overdue = isOverdue(deadline);
 
@@ -32,24 +32,33 @@ export default function TaskCard({ task, style }) {
     return "days-many";
   };
 
-  // Get text for days remaining
+  // Get text for days remaining - more compact
   const getDaysText = () => {
-    if (diffDays < 0) return `${Math.abs(diffDays)}d`;
+    if (diffDays < 0) return `${Math.abs(diffDays)}d late`;
     if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "1d";
-    return `${diffDays}d`;
+    if (diffDays === 1) return "1d left";
+    return `${diffDays}d left`;
+  };
+
+  // Get priority icon
+  const getPriorityIcon = () => {
+    if (priority === "high") return "🔴";
+    if (priority === "medium") return "🟠";
+    return "🟢";
   };
 
   return (
     <div
-      className={`task-card priority-${priority} ${overdue ? "overdue" : ""}`}
+      className={`task-card ${className}`}
       style={style}
     >
-      <h3 className="task-title">{title}</h3>
-
+      <div className={`priority-badge ${priority}`}></div>
+      
       <div className={`deadline-counter ${getDaysClass()}`}>
         {getDaysText()}
       </div>
+      
+      <h3 className="task-title">{title}</h3>
 
       <div className="task-meta">
         <div className="task-info">
@@ -60,14 +69,16 @@ export default function TaskCard({ task, style }) {
         </div>
 
         <div className="task-info">
-          <span className="task-info-icon">🚦</span>
-          <span className={`task-tag tag-${priority}`}>{priority}</span>
+          <span className="task-info-icon">{getPriorityIcon()}</span>
+          <span className={`task-tag tag-${priority}`}>
+            {priority} priority
+          </span>
         </div>
 
         {overdue && (
           <div className="task-overdue">
             <span className="task-info-icon">⚠️</span>
-            <span>Overdue</span>
+            <span>Task is overdue</span>
           </div>
         )}
       </div>

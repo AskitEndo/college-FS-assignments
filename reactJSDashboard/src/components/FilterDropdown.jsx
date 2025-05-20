@@ -6,10 +6,10 @@ export default function FilterDropdown({ filter, setFilter }) {
   const dropdownRef = useRef(null);
   
   const filterOptions = [
-    { value: "all", label: "All Tasks" },
-    { value: "high", label: "High Priority" },
-    { value: "medium", label: "Medium Priority" },
-    { value: "low", label: "Low Priority" },
+    { value: "all", label: "All Tasks", icon: "🔍" },
+    { value: "high", label: "High Priority", icon: "🔴" },
+    { value: "medium", label: "Medium Priority", icon: "🟠" },
+    { value: "low", label: "Low Priority", icon: "🟢" },
   ];
   
   // Close dropdown when clicking outside
@@ -31,9 +31,17 @@ export default function FilterDropdown({ filter, setFilter }) {
     return filterOptions.find(option => option.value === filter)?.label || "All Tasks";
   };
   
+  // Get the icon for currently selected filter
+  const getFilterIcon = () => {
+    return filterOptions.find(option => option.value === filter)?.icon || "🔍";
+  };
+  
   return (
     <div className="filter-container">
-      <div className="filter-label">Filter Tasks</div>
+      <div className="filter-label">
+        <span className="filter-icon">{getFilterIcon()}</span>
+        Filter by Priority
+      </div>
       
       <div className="filter-actions">
         <div className="filter-dropdown" ref={dropdownRef}>
@@ -56,7 +64,7 @@ export default function FilterDropdown({ filter, setFilter }) {
                     setIsOpen(false);
                   }}
                 >
-                  <span className={`priority-indicator ${option.value}`}></span>
+                  <span className="priority-indicator">{option.icon}</span>
                   <span>{option.label}</span>
                 </div>
               ))}
